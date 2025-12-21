@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import AutoLeasingPage from './pages/AutoLeasingPage';
 import ConsumerLoansPage from './pages/ConsumerLoansPage';
 import RefinancingPage from './pages/RefinancingPage';
@@ -12,7 +12,7 @@ function App() {
   const basePath = import.meta.env.BASE_URL || '/';
   
   // Helper to normalize path by removing base path
-  const normalizePath = (pathname: string) => {
+  const normalizePath = useCallback((pathname: string) => {
     // If base path is root (/), just return the pathname as-is
     if (basePath === '/') {
       return pathname || '/';
@@ -40,7 +40,7 @@ function App() {
     
     // Otherwise, ensure it starts with /
     return '/' + pathname;
-  };
+  }, [basePath]);
 
   const [currentPath, setCurrentPath] = useState(() => {
     try {
@@ -53,7 +53,12 @@ function App() {
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(normalizePath(window.location.pathname));
+      try {
+        setCurrentPath(normalizePath(window.location.pathname));
+      } catch (error) {
+        console.error('Error in handlePopState:', error);
+        setCurrentPath('/');
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -61,13 +66,18 @@ function App() {
     const originalPushState = window.history.pushState;
     window.history.pushState = function (...args) {
       originalPushState.apply(window.history, args);
-      setCurrentPath(normalizePath(window.location.pathname));
+      try {
+        setCurrentPath(normalizePath(window.location.pathname));
+      } catch (error) {
+        console.error('Error in pushState handler:', error);
+        setCurrentPath('/');
+      }
     };
 
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [basePath]);
 
   const renderPage = () => {
     switch (currentPath) {
