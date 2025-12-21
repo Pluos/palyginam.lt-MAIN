@@ -8,11 +8,22 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  // Get base path from import.meta.env.BASE_URL (set by Vite)
+  const basePath = import.meta.env.BASE_URL;
+  
+  // Helper to normalize path by removing base path
+  const normalizePath = (pathname: string) => {
+    if (pathname.startsWith(basePath)) {
+      return pathname.slice(basePath.length - 1) || '/';
+    }
+    return pathname;
+  };
+
+  const [currentPath, setCurrentPath] = useState(normalizePath(window.location.pathname));
 
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizePath(window.location.pathname));
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -20,7 +31,7 @@ function App() {
     const originalPushState = window.history.pushState;
     window.history.pushState = function (...args) {
       originalPushState.apply(window.history, args);
-      setCurrentPath(window.location.pathname);
+      setCurrentPath(normalizePath(window.location.pathname));
     };
 
     return () => {
