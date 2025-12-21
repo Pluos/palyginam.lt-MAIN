@@ -17,12 +17,14 @@ export default function Header({ activePage }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const basePath = import.meta.env.BASE_URL;
+  
   const navItems = [
-    { label: 'Automobilių lizingas', href: '/automobiliu-lizingas' },
-    { label: 'Vartojimo paskolos', href: '/vartojimo-paskolos' },
-    { label: 'Paskolų refinansavimas', href: '/paskolu-refinansavimas' },
-    { label: 'Būsto remontas', href: '/busto-remontas' },
-    { label: 'Gyvybės draudimas', href: '/gyvybes-draudimas' },
+    { label: 'Automobilių lizingas', href: `${basePath}automobiliu-lizingas` },
+    { label: 'Vartojimo paskolos', href: `${basePath}vartojimo-paskolos` },
+    { label: 'Paskolų refinansavimas', href: `${basePath}paskolu-refinansavimas` },
+    { label: 'Būsto remontas', href: `${basePath}busto-remontas` },
+    { label: 'Gyvybės draudimas', href: `${basePath}gyvybes-draudimas` },
   ];
 
   return (
@@ -49,9 +51,9 @@ export default function Header({ activePage }: HeaderProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <a href={basePath} className="flex items-center">
                 <img
-                  src="/palyginam-high-resolution-logo-transparent (1).png"
+                  src={`${basePath}palyginam-high-resolution-logo-transparent (1).png`}
                   alt="Palyginam"
                   className="h-8 lg:h-10 w-auto"
                 />

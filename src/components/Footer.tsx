@@ -2,6 +2,7 @@ import { Mail } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const basePath = import.meta.env.BASE_URL;
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -9,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <img
-              src="/palyginam-high-resolution-logo-transparent (1).png"
+              src={`${basePath}palyginam-high-resolution-logo-transparent (1).png`}
               alt="Palyginam"
               className="h-8 w-auto mb-4 brightness-0 invert"
             />
@@ -25,27 +26,27 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Paslaugos</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/automobiliu-lizingas" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}automobiliu-lizingas`} className="hover:text-green-500 transition-colors">
                   Automobilių lizingas
                 </a>
               </li>
               <li>
-                <a href="/vartojimo-paskolos" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}vartojimo-paskolos`} className="hover:text-green-500 transition-colors">
                   Vartojimo paskolos
                 </a>
               </li>
               <li>
-                <a href="/paskolu-refinansavimas" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}paskolu-refinansavimas`} className="hover:text-green-500 transition-colors">
                   Paskolų refinansavimas
                 </a>
               </li>
               <li>
-                <a href="/busto-remontas" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}busto-remontas`} className="hover:text-green-500 transition-colors">
                   Būsto remontas
                 </a>
               </li>
               <li>
-                <a href="/gyvybes-draudimas" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}gyvybes-draudimas`} className="hover:text-green-500 transition-colors">
                   Gyvybės draudimas
                 </a>
               </li>
@@ -56,12 +57,12 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Informacija</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/privatumo-politika" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}privatumo-politika`} className="hover:text-green-500 transition-colors">
                   Privatumo politika
                 </a>
               </li>
               <li>
-                <a href="/slapuku-politika" className="hover:text-green-500 transition-colors">
+                <a href={`${basePath}slapuku-politika`} className="hover:text-green-500 transition-colors">
                   Slapukų politika
                 </a>
               </li>

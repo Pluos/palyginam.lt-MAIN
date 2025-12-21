@@ -600,15 +600,15 @@ export default function InteractiveLeadForm({
                     />
                     <span className="text-sm text-gray-700">
                       Susipažinau ir sutinku su{' '}
-                      <a href="/taisykles" className="text-green-600 hover:underline">
+                      <a href={`${import.meta.env.BASE_URL}taisykles`} className="text-green-600 hover:underline">
                         taisyklėmis
                       </a>
                       ,{' '}
-                      <a href="/privatumo-politika" className="text-green-600 hover:underline">
+                      <a href={`${import.meta.env.BASE_URL}privatumo-politika`} className="text-green-600 hover:underline">
                         privatumo politika
                       </a>
                       ,{' '}
-                      <a href="/partneriu-informacija" className="text-green-600 hover:underline">
+                      <a href={`${import.meta.env.BASE_URL}partneriu-informacija`} className="text-green-600 hover:underline">
                         partnerių informacija
                       </a>{' '}
                       ir patvirtinu paraišką paskolos pasiūlymams gauti

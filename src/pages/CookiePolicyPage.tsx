@@ -196,7 +196,7 @@ export default function CookiePolicyPage() {
               </div>
               <p className="leading-relaxed mt-4">
                 Taip pat galite skaityti daugiau apie jūsų duomenų tvarkymą mūsų{' '}
-                <a href="/privatumo-politika" className="text-blue-600 hover:text-blue-800 underline">
+                <a href={`${import.meta.env.BASE_URL}privatumo-politika`} className="text-blue-600 hover:text-blue-800 underline">
                   Privatumo politikoje
                 </a>.
               </p>

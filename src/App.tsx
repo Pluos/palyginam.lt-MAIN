@@ -14,9 +14,20 @@ function App() {
   // Helper to normalize path by removing base path
   const normalizePath = (pathname: string) => {
     if (pathname.startsWith(basePath)) {
-      return pathname.slice(basePath.length - 1) || '/';
+      // Remove the full basePath including trailing slash
+      const result = pathname.slice(basePath.length);
+      // Ensure result starts with / or is empty (which becomes /)
+      return result.startsWith('/') ? result : '/' + result;
     }
-    return pathname;
+    // Remove trailing slash from basePath for comparison
+    const baseWithoutSlash = basePath.replace(/\/$/, '');
+    if (pathname.startsWith(baseWithoutSlash)) {
+      // Handle case where basePath doesn't have trailing slash in pathname
+      const result = pathname.slice(baseWithoutSlash.length);
+      return result.startsWith('/') ? result : '/' + result;
+    }
+    // If no match, return as-is (shouldn't happen but handle gracefully)
+    return pathname.startsWith('/') ? pathname : '/' + pathname;
   };
 
   const [currentPath, setCurrentPath] = useState(normalizePath(window.location.pathname));

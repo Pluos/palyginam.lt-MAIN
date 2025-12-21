@@ -146,7 +146,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">9. Slapukai</h2>
               <p className="leading-relaxed">
                 Mūsų svetainė naudoja slapukus, kad pagerintų jūsų naršymo patirtį. Daugiau informacijos apie
-                naudojamus slapukus rasite mūsų <a href="/slapuku-politika" className="text-blue-600 hover:text-blue-800 underline">Slapukų politikoje</a>.
+                naudojamus slapukus rasite mūsų <a href={`${import.meta.env.BASE_URL}slapuku-politika`} className="text-blue-600 hover:text-blue-800 underline">Slapukų politikoje</a>.
               </p>
             </section>
 
