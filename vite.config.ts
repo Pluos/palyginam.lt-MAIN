@@ -2,13 +2,11 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   plugins: [react()],
-  // IMPORTANT for GitHub Pages: base must match the repo name
-  // Site URL: https://pluos.github.io/palyginam.lt-MAIN/
-  // Use base path only in production build (GitHub Pages)
-  base: command === 'build' ? '/palyginam.lt-MAIN/' : '/',
+  // Using custom domain palyginam.lt, so base path is root
+  base: '/',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-}));
+});

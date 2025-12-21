@@ -13,13 +13,17 @@ function App() {
   
   // Helper to normalize path by removing base path
   const normalizePath = (pathname: string) => {
+    // If base path is root (/), just return the pathname as-is
+    if (basePath === '/') {
+      return pathname || '/';
+    }
+    
     // Normalize basePath - ensure it ends with /
     const normalizedBase = basePath.endsWith('/') ? basePath : basePath + '/';
     
     // If pathname starts with the base path, remove it
     if (pathname.startsWith(normalizedBase)) {
-      const result = pathname.slice(normalizedBase.length);
-      // If result is empty or just '/', return '/'
+      const result = pathname.slice(normalizedBase.length - 1); // Keep the leading /
       return result || '/';
     }
     
